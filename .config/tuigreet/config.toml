@@ -1,0 +1,10 @@
+[display]
+show_time = true
+greeting = "Access is restricted to authorised personnel only."
+
+[layout]
+container_padding = 2
+
+[secret]
+mode = "characters"
+characters = "*"
