@@ -15,16 +15,13 @@ set $mod Mod4
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 font pango:DejaVu Sans Mono 8
 
-# remove the window borders
+# remove window borders
 default_border none
-
-# remove the floating window borders
-default_floating_border none
 
 # disable focus follows mouse
 focus_follows_mouse no
 
-# set the wallpaper with xwallpaper
+# set the wallpaper
 exec --no-startup-id xwallpaper --zoom "$HOME/Pictures/boliviainteligente-37WxvlfW3to-unsplash.jpg"
 
 # set the keyboard rate
@@ -41,7 +38,7 @@ bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
 
 # kill focused window
-bindsym $mod+q kill
+bindsym $mod+Shift+q kill
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -66,13 +63,6 @@ bindsym $mod+Shift+l move right
 
 # split in vertical orientation
 bindsym $mod+v split v
-
-# enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
-
-# change container layout (stacked, tabbed, toggle split)
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
