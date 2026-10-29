@@ -8,11 +8,13 @@ if [[ -f $HOME/.cargo/env ]]; then
   . $HOME/.cargo/env
 fi
 
-# Aliases
-alias vi='vim'
-alias ll='ls -lhAF'
-alias exif='exiftool'
+# Environment variables
+#export BROWSER='firefox'
+
+# Alias
+alias ll='ls -lhA --color=auto'
+alias vi='vis'
+alias x='exiftool'
 alias z='zathura'
 
-# Variables
 PS1='[\u@\h \W]\$ '
