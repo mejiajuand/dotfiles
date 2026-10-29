@@ -1,5 +1,5 @@
 vis.events.subscribe(vis.events.FILE_SAVE_PRE, function(file, path)
-  -- if file is unmodified, don't do anything extra
+  -- if the file is unmodified, don't do anything extra
   if not file.modified then
     return
   end
@@ -19,7 +19,7 @@ vis.events.subscribe(vis.events.FILE_SAVE_PRE, function(file, path)
   -- delete the file buffer. returns true on success
   local successful = file:delete(0, file.size)
 
-  -- if delete fails, restore the buffer and proceed to write with trailing ws
+  -- if delete fails, restore the buffer and proceed to write
   if not successful then
     vis:command('earlier 1')
     return true
@@ -28,12 +28,12 @@ vis.events.subscribe(vis.events.FILE_SAVE_PRE, function(file, path)
   -- insert the new buffer into the file. returns true on success
   successful = file:insert(0, modified_buf)
 
-  -- if insert fails, restore the buffer and proceed to write with trailing ws
+  -- if insert fails, restore the buffer and proceed to write
   if not successful then
     vis:command('earlier 1')
     return true
   end
 
-  -- update the cursor position on success and exit
+  -- update the cursor position on success
   vis.win.selection.pos = pos
 end)
