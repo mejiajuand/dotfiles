@@ -32,15 +32,22 @@ vis.events.subscribe(vis.events.WIN_OPEN, function(win)
   end
 end)
 
+-- remove trailing whitespaces if possible, otherwise abort
 vis.events.subscribe(vis.events.FILE_SAVE_PRE, function(file)
-  -- delete trailing whitespace on save
-  -- warning: this deletes the entire buffer
-  -- inserts a new buffer that gets processed
-  -- by string.gsub. save mode is set to
-  -- automatic. perhaps atomic would be safer
-  local buf = file:content(0, file.size)
+  -- trimmed file buffer
+  local buf = string.gsub(file:content(0, file.size), '[ \t]+\n', '\n')
+  -- current cursor position
   local pos = vis.win.selection.pos
-  file:delete(0, file.size)
-  file:insert(0, string.gsub(buf, '[ \t]+\n', '\n'))
+  -- attempt to delete the file buffer. returns bool
+  if not file:delete(0, file.size) then
+    return false -- abort the write operation
+  end
+  -- attempt to write the trimmed buffer into the file. returns bool
+  if not file:insert(0, buf) then
+    return false -- abort the write operation
+  end
+  -- update the cursor position
   vis.win.selection.pos = pos
+  -- proceed with the write operation
+  return true
 end)

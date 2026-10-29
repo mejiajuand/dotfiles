@@ -8,9 +8,6 @@ if [[ -f $HOME/.cargo/env ]]; then
   . $HOME/.cargo/env
 fi
 
-# Environment variables
-#export BROWSER='firefox'
-
 # Alias
 alias ll='ls -lhA --color=auto'
 alias vi='vis'
