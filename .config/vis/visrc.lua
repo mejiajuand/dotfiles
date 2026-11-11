@@ -30,14 +30,19 @@ vis.events.subscribe(vis.events.WIN_OPEN, function(win)
   vis:command('set autoindent')
   vis:command('set showeof off')
   vis:command('set statusbar off')
-  vis:command('set colorcolumn 72')
+  vis:command('set colorcolumn 80')
 
   -- file configurations
-  if vis.win.syntax == 'ansi_c' or vis.win.syntax == 'makefile' then
+  if win.syntax == 'ansi_c' or win.syntax == 'makefile' then
     vis:command('set tabwidth 8')
     vis:command('set expandtab off')
-  elseif vis.win.syntax == 'rust' or vis.win.syntax == 'python' then
+
+  elseif win.syntax == 'rust' or win.syntax == 'python' then
     vis:command('set tabwidth 4')
+
+  elseif not win.syntax then
+    vis:command('set syntax text')
+    vis:command('set colorcolumn 72')
   end
 end)
 
